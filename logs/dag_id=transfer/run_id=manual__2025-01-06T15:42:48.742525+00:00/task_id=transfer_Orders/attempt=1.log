@@ -1,0 +1,34 @@
+[2025-01-06T15:42:49.922+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-06T15:42:49.930+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: transfer.transfer_Orders manual__2025-01-06T15:42:48.742525+00:00 [queued]>
+[2025-01-06T15:42:49.935+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: transfer.transfer_Orders manual__2025-01-06T15:42:48.742525+00:00 [queued]>
+[2025-01-06T15:42:49.935+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-01-06T15:42:49.940+0000] {taskinstance.py:2889} INFO - Executing <Task(GenericTransfer): transfer_Orders> on 2025-01-06 15:42:48.742525+00:00
+[2025-01-06T15:42:49.947+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=127) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-01-06T15:42:49.948+0000] {standard_task_runner.py:72} INFO - Started process 137 to run task
+[2025-01-06T15:42:49.951+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'transfer', 'transfer_Orders', 'manual__2025-01-06T15:42:48.742525+00:00', '--job-id', '27', '--raw', '--subdir', 'DAGS_FOLDER/tranfer_dag.py', '--cfg-path', '/tmp/tmpkujqktdk']
+[2025-01-06T15:42:49.953+0000] {standard_task_runner.py:105} INFO - Job 27: Subtask transfer_Orders
+[2025-01-06T15:42:49.979+0000] {task_command.py:467} INFO - Running <TaskInstance: transfer.transfer_Orders manual__2025-01-06T15:42:48.742525+00:00 [running]> on host 78501d4f6bfb
+[2025-01-06T15:42:50.020+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='transfer' AIRFLOW_CTX_TASK_ID='transfer_Orders' AIRFLOW_CTX_EXECUTION_DATE='2025-01-06T15:42:48.742525+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-06T15:42:48.742525+00:00'
+[2025-01-06T15:42:50.022+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-06T15:42:50.034+0000] {base.py:84} INFO - Retrieving connection 'postgres-source'
+[2025-01-06T15:42:50.042+0000] {base.py:84} INFO - Retrieving connection 'mysql-target'
+[2025-01-06T15:42:50.043+0000] {generic_transfer.py:79} INFO - Extracting data from postgres-source
+[2025-01-06T15:42:50.043+0000] {generic_transfer.py:80} INFO - Executing: 
+ SELECT * FROM Orders
+[2025-01-06T15:42:50.047+0000] {base.py:84} INFO - Retrieving connection 'postgres-source'
+[2025-01-06T15:42:50.052+0000] {sql.py:553} INFO - Running statement: SELECT * FROM Orders, parameters: None
+[2025-01-06T15:42:50.052+0000] {sql.py:562} INFO - Rows affected: 2
+[2025-01-06T15:42:50.053+0000] {generic_transfer.py:97} INFO - Running preoperator
+[2025-01-06T15:42:50.053+0000] {generic_transfer.py:98} INFO - truncate Orders
+[2025-01-06T15:42:50.057+0000] {base.py:84} INFO - Retrieving connection 'mysql-target'
+[2025-01-06T15:42:50.061+0000] {sql.py:553} INFO - Running statement: truncate Orders, parameters: None
+[2025-01-06T15:42:50.073+0000] {sql.py:562} INFO - Rows affected: 0
+[2025-01-06T15:42:50.073+0000] {generic_transfer.py:107} INFO - Inserting rows into mysql-target
+[2025-01-06T15:42:50.076+0000] {sql.py:694} INFO - Done loading. Loaded a total of 2 rows into Orders
+[2025-01-06T15:42:50.082+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-06T15:42:50.082+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=transfer, task_id=transfer_Orders, run_id=manual__2025-01-06T15:42:48.742525+00:00, execution_date=20250106T154248, start_date=20250106T154249, end_date=20250106T154250
+[2025-01-06T15:42:50.123+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-01-06T15:42:50.130+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-01-06T15:42:50.131+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

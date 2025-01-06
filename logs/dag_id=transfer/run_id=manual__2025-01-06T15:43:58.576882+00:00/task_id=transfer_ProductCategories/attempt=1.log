@@ -1,0 +1,33 @@
+[2025-01-06T15:43:59.002+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-06T15:43:59.010+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: transfer.transfer_ProductCategories manual__2025-01-06T15:43:58.576882+00:00 [queued]>
+[2025-01-06T15:43:59.015+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: transfer.transfer_ProductCategories manual__2025-01-06T15:43:58.576882+00:00 [queued]>
+[2025-01-06T15:43:59.015+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-01-06T15:43:59.021+0000] {taskinstance.py:2889} INFO - Executing <Task(GenericTransfer): transfer_ProductCategories> on 2025-01-06 15:43:58.576882+00:00
+[2025-01-06T15:43:59.028+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=149) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-01-06T15:43:59.030+0000] {standard_task_runner.py:72} INFO - Started process 158 to run task
+[2025-01-06T15:43:59.030+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'transfer', 'transfer_ProductCategories', 'manual__2025-01-06T15:43:58.576882+00:00', '--job-id', '33', '--raw', '--subdir', 'DAGS_FOLDER/tranfer_dag.py', '--cfg-path', '/tmp/tmpjj8q60hi']
+[2025-01-06T15:43:59.031+0000] {standard_task_runner.py:105} INFO - Job 33: Subtask transfer_ProductCategories
+[2025-01-06T15:43:59.060+0000] {task_command.py:467} INFO - Running <TaskInstance: transfer.transfer_ProductCategories manual__2025-01-06T15:43:58.576882+00:00 [running]> on host 78501d4f6bfb
+[2025-01-06T15:43:59.103+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='transfer' AIRFLOW_CTX_TASK_ID='transfer_ProductCategories' AIRFLOW_CTX_EXECUTION_DATE='2025-01-06T15:43:58.576882+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-06T15:43:58.576882+00:00'
+[2025-01-06T15:43:59.105+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-06T15:43:59.114+0000] {base.py:84} INFO - Retrieving connection 'postgres-source'
+[2025-01-06T15:43:59.121+0000] {base.py:84} INFO - Retrieving connection 'mysql-target'
+[2025-01-06T15:43:59.123+0000] {generic_transfer.py:79} INFO - Extracting data from postgres-source
+[2025-01-06T15:43:59.124+0000] {generic_transfer.py:80} INFO - Executing: 
+ SELECT * FROM ProductCategories
+[2025-01-06T15:43:59.127+0000] {base.py:84} INFO - Retrieving connection 'postgres-source'
+[2025-01-06T15:43:59.131+0000] {sql.py:553} INFO - Running statement: SELECT * FROM ProductCategories, parameters: None
+[2025-01-06T15:43:59.132+0000] {sql.py:562} INFO - Rows affected: 3
+[2025-01-06T15:43:59.133+0000] {generic_transfer.py:97} INFO - Running preoperator
+[2025-01-06T15:43:59.133+0000] {generic_transfer.py:98} INFO - truncate ProductCategories
+[2025-01-06T15:43:59.139+0000] {base.py:84} INFO - Retrieving connection 'mysql-target'
+[2025-01-06T15:43:59.143+0000] {sql.py:553} INFO - Running statement: truncate ProductCategories, parameters: None
+[2025-01-06T15:43:59.155+0000] {sql.py:562} INFO - Rows affected: 0
+[2025-01-06T15:43:59.155+0000] {generic_transfer.py:107} INFO - Inserting rows into mysql-target
+[2025-01-06T15:43:59.157+0000] {sql.py:694} INFO - Done loading. Loaded a total of 3 rows into ProductCategories
+[2025-01-06T15:43:59.163+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-06T15:43:59.164+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=transfer, task_id=transfer_ProductCategories, run_id=manual__2025-01-06T15:43:58.576882+00:00, execution_date=20250106T154358, start_date=20250106T154359, end_date=20250106T154359
+[2025-01-06T15:43:59.207+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-01-06T15:43:59.212+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

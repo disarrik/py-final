@@ -1,0 +1,34 @@
+[2025-01-06T15:00:34.389+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-06T15:00:34.397+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: transfer.transfer_ProductCategories manual__2025-01-06T15:00:33.362035+00:00 [queued]>
+[2025-01-06T15:00:34.401+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: transfer.transfer_ProductCategories manual__2025-01-06T15:00:33.362035+00:00 [queued]>
+[2025-01-06T15:00:34.401+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-01-06T15:00:34.406+0000] {taskinstance.py:2889} INFO - Executing <Task(GenericTransfer): transfer_ProductCategories> on 2025-01-06 15:00:33.362035+00:00
+[2025-01-06T15:00:34.410+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=185) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-01-06T15:00:34.411+0000] {standard_task_runner.py:72} INFO - Started process 190 to run task
+[2025-01-06T15:00:34.411+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'transfer', 'transfer_ProductCategories', 'manual__2025-01-06T15:00:33.362035+00:00', '--job-id', '20', '--raw', '--subdir', 'DAGS_FOLDER/tranfer_dag.py', '--cfg-path', '/tmp/tmpja3xlw0e']
+[2025-01-06T15:00:34.413+0000] {standard_task_runner.py:105} INFO - Job 20: Subtask transfer_ProductCategories
+[2025-01-06T15:00:34.437+0000] {task_command.py:467} INFO - Running <TaskInstance: transfer.transfer_ProductCategories manual__2025-01-06T15:00:33.362035+00:00 [running]> on host 78501d4f6bfb
+[2025-01-06T15:00:34.480+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='transfer' AIRFLOW_CTX_TASK_ID='transfer_ProductCategories' AIRFLOW_CTX_EXECUTION_DATE='2025-01-06T15:00:33.362035+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-06T15:00:33.362035+00:00'
+[2025-01-06T15:00:34.481+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-06T15:00:34.493+0000] {base.py:84} INFO - Retrieving connection 'postgres-source'
+[2025-01-06T15:00:34.505+0000] {base.py:84} INFO - Retrieving connection 'mysql-target'
+[2025-01-06T15:00:34.506+0000] {generic_transfer.py:79} INFO - Extracting data from postgres-source
+[2025-01-06T15:00:34.507+0000] {generic_transfer.py:80} INFO - Executing: 
+ SELECT * FROM ProductCategories
+[2025-01-06T15:00:34.510+0000] {base.py:84} INFO - Retrieving connection 'postgres-source'
+[2025-01-06T15:00:34.514+0000] {sql.py:553} INFO - Running statement: SELECT * FROM ProductCategories, parameters: None
+[2025-01-06T15:00:34.515+0000] {sql.py:562} INFO - Rows affected: 3
+[2025-01-06T15:00:34.516+0000] {generic_transfer.py:97} INFO - Running preoperator
+[2025-01-06T15:00:34.516+0000] {generic_transfer.py:98} INFO - truncate ProductCategories
+[2025-01-06T15:00:34.521+0000] {base.py:84} INFO - Retrieving connection 'mysql-target'
+[2025-01-06T15:00:34.525+0000] {sql.py:553} INFO - Running statement: truncate ProductCategories, parameters: None
+[2025-01-06T15:00:34.535+0000] {sql.py:562} INFO - Rows affected: 0
+[2025-01-06T15:00:34.535+0000] {generic_transfer.py:107} INFO - Inserting rows into mysql-target
+[2025-01-06T15:00:34.538+0000] {sql.py:694} INFO - Done loading. Loaded a total of 3 rows into ProductCategories
+[2025-01-06T15:00:34.543+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-06T15:00:34.543+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=transfer, task_id=transfer_ProductCategories, run_id=manual__2025-01-06T15:00:33.362035+00:00, execution_date=20250106T150033, start_date=20250106T150034, end_date=20250106T150034
+[2025-01-06T15:00:34.586+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-01-06T15:00:34.591+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-01-06T15:00:34.592+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,76 @@
+[2025-01-06T15:43:59.005+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-06T15:43:59.013+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: transfer.build_total manual__2025-01-06T15:43:58.576882+00:00 [queued]>
+[2025-01-06T15:43:59.017+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: transfer.build_total manual__2025-01-06T15:43:58.576882+00:00 [queued]>
+[2025-01-06T15:43:59.018+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-01-06T15:43:59.025+0000] {taskinstance.py:2889} INFO - Executing <Task(MySqlOperator): build_total> on 2025-01-06 15:43:58.576882+00:00
+[2025-01-06T15:43:59.031+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=154) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-01-06T15:43:59.032+0000] {standard_task_runner.py:72} INFO - Started process 162 to run task
+[2025-01-06T15:43:59.033+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'transfer', 'build_total', 'manual__2025-01-06T15:43:58.576882+00:00', '--job-id', '34', '--raw', '--subdir', 'DAGS_FOLDER/tranfer_dag.py', '--cfg-path', '/tmp/tmp607safk3']
+[2025-01-06T15:43:59.034+0000] {standard_task_runner.py:105} INFO - Job 34: Subtask build_total
+[2025-01-06T15:43:59.062+0000] {task_command.py:467} INFO - Running <TaskInstance: transfer.build_total manual__2025-01-06T15:43:58.576882+00:00 [running]> on host 78501d4f6bfb
+[2025-01-06T15:43:59.104+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='transfer' AIRFLOW_CTX_TASK_ID='build_total' AIRFLOW_CTX_EXECUTION_DATE='2025-01-06T15:43:58.576882+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-06T15:43:58.576882+00:00'
+[2025-01-06T15:43:59.109+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-06T15:43:59.116+0000] {sql.py:278} INFO - Executing: 
+INSERT INTO UserTotal (user_id, total_orders, total_purchased, favourite_category_id)
+SELECT 
+    u.user_id,
+    (select count(*) from Orders o where o.user_id = u.user_id ) AS total_orders,
+    (select sum(total_amount) from Orders o where o.user_id = u.user_id ) AS total_purchased,
+    (
+        SELECT 
+            pc.category_id 
+        FROM 
+            Orders o 
+            JOIN OrderDetails od ON o.order_id = od.order_id 
+            JOIN Products p ON od.product_id = p.product_id 
+            JOIN ProductCategories pc ON p.category_id = pc.category_id
+        WHERE 
+            u.user_id = o.user_id
+        GROUP BY 
+            pc.category_id
+        ORDER BY 
+            SUM(od.quantity * p.price) DESC
+        LIMIT 1
+    ) AS favourite_category_id
+FROM 
+    Users u
+GROUP BY 
+    u.user_id;
+        
+[2025-01-06T15:43:59.122+0000] {base.py:84} INFO - Retrieving connection 'mysql-target'
+[2025-01-06T15:43:59.127+0000] {base.py:84} INFO - Retrieving connection 'mysql-target'
+[2025-01-06T15:43:59.132+0000] {sql.py:553} INFO - Running statement: 
+INSERT INTO UserTotal (user_id, total_orders, total_purchased, favourite_category_id)
+SELECT 
+    u.user_id,
+    (select count(*) from Orders o where o.user_id = u.user_id ) AS total_orders,
+    (select sum(total_amount) from Orders o where o.user_id = u.user_id ) AS total_purchased,
+    (
+        SELECT 
+            pc.category_id 
+        FROM 
+            Orders o 
+            JOIN OrderDetails od ON o.order_id = od.order_id 
+            JOIN Products p ON od.product_id = p.product_id 
+            JOIN ProductCategories pc ON p.category_id = pc.category_id
+        WHERE 
+            u.user_id = o.user_id
+        GROUP BY 
+            pc.category_id
+        ORDER BY 
+            SUM(od.quantity * p.price) DESC
+        LIMIT 1
+    ) AS favourite_category_id
+FROM 
+    Users u
+GROUP BY 
+    u.user_id;
+        , parameters: None
+[2025-01-06T15:43:59.134+0000] {sql.py:562} INFO - Rows affected: 2
+[2025-01-06T15:43:59.141+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-06T15:43:59.142+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=transfer, task_id=build_total, run_id=manual__2025-01-06T15:43:58.576882+00:00, execution_date=20250106T154358, start_date=20250106T154359, end_date=20250106T154359
+[2025-01-06T15:43:59.167+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-01-06T15:43:59.177+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-01-06T15:43:59.178+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

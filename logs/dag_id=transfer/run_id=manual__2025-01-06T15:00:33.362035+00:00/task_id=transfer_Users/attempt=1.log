@@ -1,0 +1,34 @@
+[2025-01-06T15:00:34.414+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-01-06T15:00:34.422+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: transfer.transfer_Users manual__2025-01-06T15:00:33.362035+00:00 [queued]>
+[2025-01-06T15:00:34.429+0000] {taskinstance.py:2613} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: transfer.transfer_Users manual__2025-01-06T15:00:33.362035+00:00 [queued]>
+[2025-01-06T15:00:34.429+0000] {taskinstance.py:2866} INFO - Starting attempt 1 of 1
+[2025-01-06T15:00:34.435+0000] {taskinstance.py:2889} INFO - Executing <Task(GenericTransfer): transfer_Users> on 2025-01-06 15:00:33.362035+00:00
+[2025-01-06T15:00:34.439+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=188) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-01-06T15:00:34.441+0000] {standard_task_runner.py:72} INFO - Started process 198 to run task
+[2025-01-06T15:00:34.442+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'transfer', 'transfer_Users', 'manual__2025-01-06T15:00:33.362035+00:00', '--job-id', '24', '--raw', '--subdir', 'DAGS_FOLDER/tranfer_dag.py', '--cfg-path', '/tmp/tmp0ofkwt4k']
+[2025-01-06T15:00:34.443+0000] {standard_task_runner.py:105} INFO - Job 24: Subtask transfer_Users
+[2025-01-06T15:00:34.468+0000] {task_command.py:467} INFO - Running <TaskInstance: transfer.transfer_Users manual__2025-01-06T15:00:33.362035+00:00 [running]> on host 78501d4f6bfb
+[2025-01-06T15:00:34.512+0000] {taskinstance.py:3132} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='transfer' AIRFLOW_CTX_TASK_ID='transfer_Users' AIRFLOW_CTX_EXECUTION_DATE='2025-01-06T15:00:33.362035+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-06T15:00:33.362035+00:00'
+[2025-01-06T15:00:34.513+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2025-01-06T15:00:34.526+0000] {base.py:84} INFO - Retrieving connection 'postgres-source'
+[2025-01-06T15:00:34.538+0000] {base.py:84} INFO - Retrieving connection 'mysql-target'
+[2025-01-06T15:00:34.539+0000] {generic_transfer.py:79} INFO - Extracting data from postgres-source
+[2025-01-06T15:00:34.540+0000] {generic_transfer.py:80} INFO - Executing: 
+ SELECT * FROM Users
+[2025-01-06T15:00:34.542+0000] {base.py:84} INFO - Retrieving connection 'postgres-source'
+[2025-01-06T15:00:34.546+0000] {sql.py:553} INFO - Running statement: SELECT * FROM Users, parameters: None
+[2025-01-06T15:00:34.547+0000] {sql.py:562} INFO - Rows affected: 2
+[2025-01-06T15:00:34.547+0000] {generic_transfer.py:97} INFO - Running preoperator
+[2025-01-06T15:00:34.549+0000] {generic_transfer.py:98} INFO - truncate Users
+[2025-01-06T15:00:34.552+0000] {base.py:84} INFO - Retrieving connection 'mysql-target'
+[2025-01-06T15:00:34.556+0000] {sql.py:553} INFO - Running statement: truncate Users, parameters: None
+[2025-01-06T15:00:34.563+0000] {sql.py:562} INFO - Rows affected: 0
+[2025-01-06T15:00:34.564+0000] {generic_transfer.py:107} INFO - Inserting rows into mysql-target
+[2025-01-06T15:00:34.566+0000] {sql.py:694} INFO - Done loading. Loaded a total of 2 rows into Users
+[2025-01-06T15:00:34.569+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2025-01-06T15:00:34.569+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=transfer, task_id=transfer_Users, run_id=manual__2025-01-06T15:00:33.362035+00:00, execution_date=20250106T150033, start_date=20250106T150034, end_date=20250106T150034
+[2025-01-06T15:00:34.576+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-01-06T15:00:34.581+0000] {taskinstance.py:3895} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-01-06T15:00:34.581+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
